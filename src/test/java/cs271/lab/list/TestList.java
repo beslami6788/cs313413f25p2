@@ -61,10 +61,10 @@ public class TestList {
     list.add(77);
     list.add(77);
     // TODO fix the expected values in the assertions below
-    assertEquals(0, list.size());
-    assertEquals(0, list.indexOf(77));
-    assertEquals(0, list.get(1).intValue());
-    assertEquals(0, list.lastIndexOf(77));
+      assertEquals(3, list.size());
+      assertEquals(0, list.indexOf(77));
+      assertEquals(77, list.get(1).intValue());
+      assertEquals(2, list.lastIndexOf(77));
   }
 
   @Test
@@ -77,12 +77,12 @@ public class TestList {
     list.add(77);
     list.add(66);
     // TODO fix the expected values in the assertions below
-    assertEquals(0, list.size());
-    assertEquals(0, list.indexOf(77));
-    assertEquals(0, list.lastIndexOf(77));
-    assertEquals(0, list.get(2).intValue());
-    assertEquals(0, list.get(3).intValue());
-    assertEquals(List.of(33, 77, 44), list);
+      assertEquals(7, list.size());
+      assertEquals(1, list.indexOf(77));
+      assertEquals(5, list.lastIndexOf(77));
+      assertEquals(44, list.get(2).intValue());
+      assertEquals(77, list.get(3).intValue());
+      assertEquals(List.of(33, 77, 44, 77, 55, 77, 66), list);
   }
 
   @Test
