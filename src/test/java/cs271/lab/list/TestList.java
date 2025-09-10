@@ -96,17 +96,17 @@ public class TestList {
     list.add(6);
     list.remove(5); // TODO Question: What does this method do?
     // TODO fix the expected values in the assertions below
-    assertEquals(0, list.size());
-    assertEquals(0, list.indexOf(77));
-    assertEquals(0, list.lastIndexOf(77));
-    assertEquals(0, list.get(2).intValue());
-    assertEquals(0, list.get(3).intValue());
+      assertEquals(6, list.size());
+      assertEquals(1, list.indexOf(77));
+      assertEquals(3, list.lastIndexOf(77));
+      assertEquals(4, list.get(2).intValue());
+      assertEquals(77, list.get(3).intValue());
     list.remove(Integer.valueOf(5)); // TODO Question: What does this one do?
-    assertEquals(0, list.size());
-    assertEquals(0, list.indexOf(77));
-    assertEquals(0, list.lastIndexOf(77));
-    assertEquals(0, list.get(2).intValue());
-    assertEquals(0, list.get(3).intValue());
+      assertEquals(5, list.size());
+      assertEquals(1, list.indexOf(77));
+      assertEquals(3, list.lastIndexOf(77));
+      assertEquals(4, list.get(2).intValue());
+      assertEquals(77, list.get(3).intValue());
   }
 
   @Test
@@ -121,6 +121,8 @@ public class TestList {
     // TODO using containsAll and List.of (see above),
     // 1) assert that list contains all five different numbers added
     // 2) assert that list does not contain all of 11, 22, and 33
+    assertTrue(list.containsAll(List.of(33, 44, 55, 66, 77)));
+    assertFalse(list.containsAll(List.of(11, 22, 33)));
     fail("Not yet implemented"); // remove this line when done
   }
 
