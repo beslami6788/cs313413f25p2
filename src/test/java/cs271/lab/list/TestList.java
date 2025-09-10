@@ -2,6 +2,7 @@ package cs271.lab.list;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -40,18 +41,18 @@ public class TestList {
   @Test
   public void testSizeNonEmpty() {
     // TODO fix the expected values in the assertions below
-    list.add(77);
-    assertEquals(true, list.isEmpty());
-    assertEquals(0, list.size());
-    assertEquals(0, list.get(0).intValue());
+      list.add(77);
+      assertFalse(list.isEmpty());
+      assertEquals(1, list.size());
+      assertEquals(77, list.get(0).intValue());
   }
 
   @Test
   public void testContains() {
     // TODO write assertions using
-    // list.contains(77)
-    // that hold before and after adding 77 to the list
-    fail("Not yet implemented"); // remove this line when done
+      assertFalse(list.contains(77));
+      list.add(77);
+      assertTrue(list.contains(77));
   }
 
   @Test
