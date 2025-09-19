@@ -9,68 +9,92 @@ import org.junit.Test;
 
 public class TestPerformance {
 
-  // TODO run test and record running times for SIZE = 10, 100, 1000, 10000, ...
-  // (choose in conjunction with REPS below up to an upper limit where the clock
-  // running time is in the tens of seconds)
-  // TODO Question: What conclusions can you draw about the performance of LinkedList vs. ArrayList when
-  // comparing their running times for AddRemove vs. Access? Record those running times in README.txt!
-  // TODO (optional) refactor to DRY
-  // which of the two lists performs better as the size increases?
-  private final int SIZE = 10;
+    // TODO run test and record running times for SIZE = 10, 100, 1000, 10000, ...
+    // (choose in conjunction with REPS below up to an upper limit where the clock
+    // running time is in the tens of seconds)
+    // TODO Question: What conclusions can you draw about the performance of LinkedList vs. ArrayList when
+    // comparing their running times for AddRemove vs. Access? Record those running times in README.txt!
+    // TODO (optional) refactor to DRY
+    // which of the two lists performs better as the size increases?
+    private final int SIZE = 10000;
 
-  // TODO choose this value in such a way that you can observe an actual effect
-  // for increasing problem sizes
-  private final int REPS = 1000000;
+    // TODO choose this value in such a way that you can observe an actual effect
+    // for increasing problem sizes
+    private final int REPS = 1000000;
 
-  private List<Integer> arrayList;
+    private List<Integer> arrayList;
 
-  private List<Integer> linkedList;
+    private List<Integer> linkedList;
 
-  @Before
-  public void setUp() throws Exception {
-    arrayList = new ArrayList<Integer>(SIZE);
-    linkedList = new LinkedList<Integer>();
-    for (var i = 0; i < SIZE; i++) {
-      arrayList.add(i);
-      linkedList.add(i);
+    @Before
+    public void setUp() throws Exception {
+        arrayList = new ArrayList<Integer>(SIZE);
+        linkedList = new LinkedList<Integer>();
+        for (var i = 0; i < SIZE; i++) {
+            arrayList.add(i);
+            linkedList.add(i);
+        }
     }
-  }
 
-  @After
-  public void tearDown() throws Exception {
-    arrayList = null;
-    linkedList = null;
-  }
-
-  @Test
-  public void testLinkedListAddRemove() {
-    for (var r = 0; r < REPS; r++) {
-      linkedList.add(0, 77);
-      linkedList.remove(0);
+    @After
+    public void tearDown() throws Exception {
+        arrayList = null;
+        linkedList = null;
     }
-  }
 
-  @Test
-  public void testArrayListAddRemove() {
-    for (var r = 0; r < REPS; r++) {
-      arrayList.add(0, 77);
-      arrayList.remove(0);
-    }
-  }
+    @Test
+    public void testLinkedListAddRemove() {
+        long startTime = System.currentTimeMillis();
 
-  @Test
-  public void testLinkedListAccess() {
-    var sum = 0L;
-    for (var r = 0; r < REPS; r++) {
-      sum += linkedList.get(r % SIZE);
-    }
-  }
+        for (var r = 0; r < REPS; r++) {
+            linkedList.add(0, 77);
+            linkedList.remove(0);
+        }
 
-  @Test
-  public void testArrayListAccess() {
-    var sum = 0L;
-    for (var r = 0; r < REPS; r++) {
-      sum += arrayList.get(r % SIZE);
+        long endTime = System.currentTimeMillis();
+        long duration = endTime - startTime;
+        System.out.println("testLinkedListAddRemove (SIZE=" + SIZE + "): " + duration + "ms");
     }
-  }
+
+    @Test
+    public void testArrayListAddRemove() {
+        long startTime = System.currentTimeMillis();
+
+        for (var r = 0; r < REPS; r++) {
+            arrayList.add(0, 77);
+            arrayList.remove(0);
+        }
+
+        long endTime = System.currentTimeMillis();
+        long duration = endTime - startTime;
+        System.out.println("testArrayListAddRemove (SIZE=" + SIZE + "): " + duration + "ms");
+    }
+
+    @Test
+    public void testLinkedListAccess() {
+        long startTime = System.currentTimeMillis();
+
+        var sum = 0L;
+        for (var r = 0; r < REPS; r++) {
+            sum += linkedList.get(r % SIZE);
+        }
+
+        long endTime = System.currentTimeMillis();
+        long duration = endTime - startTime;
+        System.out.println("testLinkedListAccess (SIZE=" + SIZE + "): " + duration + "ms");
+    }
+
+    @Test
+    public void testArrayListAccess() {
+        long startTime = System.currentTimeMillis();
+
+        var sum = 0L;
+        for (var r = 0; r < REPS; r++) {
+            sum += arrayList.get(r % SIZE);
+        }
+
+        long endTime = System.currentTimeMillis();
+        long duration = endTime - startTime;
+        System.out.println("testArrayListAccess (SIZE=" + SIZE + "): " + duration + "ms");
+    }
 }
